@@ -1,6 +1,6 @@
 import tracker from "../utils/tracker";
 import onload from "../utils/onload";
-export function blankScreen() {
+export function blankScreen(times = 0) { // 轮询次数
   let wrapperElements = ["html", "body", "#container"];
   let wrapperPoints = 0;
   function getSelector(element) {
@@ -59,6 +59,25 @@ export function blankScreen() {
         viewPoint: `${window.innerWidth}*${window.innerHeight}`, //视口
         selector: getSelector(centerElements), //选择器
       });
+      // 每次都注册一个新的setInterval定时器
+      if (!window.whiteLoopTimer || times !== 0) whiteLoop(times);
+    } else {
+      // 采样点有元素，清空白屏轮询
+      if (window.whiteLoopTimer) {
+        clearTimeout(window.whiteLoopTimer);
+        window.whiteLoopTimer = null;
+      }
     }
   });
+  function whiteLoop(times) {
+    if (window.whiteLoopTimer) { // 先清空再注册
+      clearTimeout(window.whiteLoopTimer);
+      window.whiteLoopTimer = null;
+    }
+    if (times <= 5) { // times控制轮询次数不超过10s(6次)；检测时间点：0s、2s、4s、6s、8s、10s
+      window.whiteLoopTimer = setInterval(() => {
+        blankScreen(++times);
+      }, 2000);
+    }
+  }
 }

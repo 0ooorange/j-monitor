@@ -3,11 +3,19 @@ import getSelector from "../utils/getSelector";
 import tracker from "../utils/tracker";
 export function injectJsError() {
   // 监听全局未捕获的错误
-  window.addEventListener(
-    "error",
-    function (event) {
-      // 错误事件对象
-      let lastEvent = getLastEvent(); // 最后一个交互事件
+  window.addEventListener("error", function (event) {
+    // 错误事件对象
+    let lastEvent = getLastEvent(); // 最后一个交互事件
+    if(event.target && (event.target.src || event.target.href)) { // 资源加载错误
+      tracker.send({
+        kind: "stability", // 监控指标的大类
+        type: "error", // 小类型，这是一个错误
+        errorType: "resourceError", // JS执行错误
+        filename: event.target.src, // 报错文件
+        tagName: event.target.nodeName, // SCRIPT
+        selector: getSelector(event.target), // 代表最后一个操作元素
+      })
+    } else { // js执行错误
       tracker.send({
         kind: "stability", // 监控指标的大类
         type: "error", // 小类型，这是一个错误
@@ -20,9 +28,8 @@ export function injectJsError() {
           ? getSelector(lastEvent.composedPath && lastEvent.composedPath())
           : "", // 代表最后一个操作元素
       });
-    },
-    true
-  );
+    }
+  }, true);
   function getLines(stack) {
     return stack
       .split("\n")

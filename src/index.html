@@ -6,7 +6,19 @@
     <title>前端监控</title>
   </head>
   <body>
-    <div>
+    <div class="container">
+      <div id="contentbox" class="div1 div01"></div>
+    </div>
+    <script> // 模拟白屏
+      let contentbox = document.getElementById("contentbox");
+      const newContent = document.createTextNode("Hi there and greetings!");
+      // contentbox.appendChild(newContent);
+      setTimeout(() => {
+        contentbox.appendChild(newContent);
+      }, 3000);
+    </script>
+    <!-- 监控JS错误、promise错误示例 -->
+    <!-- <div>
       <div class="content">
         <input
           id="jsErrorBtn"
@@ -67,7 +79,7 @@
         };
         xhr.send("name=jenny");
       }
-    </script>
+    </script> -->
     <!-- 资源加载错误示例 -->
     <!-- <script type="module" defer src="/someError.js"></script> -->
   </body>

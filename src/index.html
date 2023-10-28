@@ -14,11 +14,25 @@
           value="点击抛出错误"
           onclick="jsErrorClick()"
         />
+        <input
+          id="promiseBtn"
+          type="button"
+          value="点击抛出promise错误"
+          onclick="promiseClick()"
+        />
       </div>
     </div>
     <script>
       function jsErrorClick() {
         window.somVar.error = "error";
+      }
+      function promiseClick() {
+        return new Promise(function (resolve, reject) {
+          // window.somVar.error = "error";
+          reject('error')
+        }).then((res) => {
+          console.log("promise成功！");
+        });
       }
     </script>
     <!-- 资源加载错误示例 -->

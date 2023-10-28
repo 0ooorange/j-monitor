@@ -20,6 +20,18 @@
           value="点击抛出promise错误"
           onclick="promiseClick()"
         />
+        <input
+          id="successBtn"
+          type="button"
+          value="点击ajax成功请求"
+          onclick="sendSuccess()"
+        />
+        <input
+          id="errorBtn"
+          type="button"
+          value="点击ajax失败请求"
+          onclick="sendError()"
+        />
       </div>
     </div>
     <script>
@@ -34,8 +46,29 @@
           console.log("promise成功！");
         });
       }
+      function sendSuccess() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "/success", true);
+        xhr.responseType = "json";
+        xhr.onload = function () {
+          console.log(xhr.response);
+        };
+        xhr.send();
+      }
+      function sendError() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "/error", true);
+        xhr.responseType = "json";
+        xhr.onload = function () {
+          console.log(xhr.response);
+        };
+        xhr.onerror = function (error) {
+          console.log(error);
+        };
+        xhr.send("name=jenny");
+      }
     </script>
     <!-- 资源加载错误示例 -->
-    <script type="module" defer src="/someError.js"></script>
+    <!-- <script type="module" defer src="/someError.js"></script> -->
   </body>
 </html>

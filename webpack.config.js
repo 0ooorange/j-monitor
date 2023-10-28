@@ -12,6 +12,15 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'dist') // devServer静态文件根目录
     },
+    // mock数据
+    onBeforeSetupMiddleware: function (devServer) {
+      devServer.app.get('/success', function(req, res) {
+        res.json({id: 1}); // 200
+      })
+      devServer.app.post('/error', function(req, res) {
+        res.sendStatus(500); // 500
+      })
+    }
   },
   plugins: [
     new htmlWebpackPlugin({

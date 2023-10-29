@@ -7,6 +7,16 @@
   </head>
   <body>
     <div class="container">
+      <div id="contentbox" class="div1 div01" style="height: 200px; width: 100%;"></div>
+    </div>
+    <script> // domContentLoadedEventTime指标测试
+      // DOM解析完成，即使依赖的资源没有加载完成，也会触发这个事件
+      document.addEventListener('DOMContentLoaded', () => {
+        const start = Date.now();
+        while((Date.now() - start) < 1000) {}
+      })
+    </script>
+    <!-- <div class="container">
       <div id="contentbox" class="div1 div01"></div>
     </div>
     <script> // 模拟白屏
@@ -17,7 +27,7 @@
         contentbox.style.height = '200px';
         contentbox.appendChild(newContent);
       }, 3000);
-    </script>
+    </script> -->
     <!-- 监控JS错误、promise错误示例 -->
     <!-- <div>
       <div class="content">

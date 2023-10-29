@@ -81,10 +81,10 @@ export function timing() {
       tracker.send({
         kind: "experience",
         type: "paint", // 统计每个阶段的时间
-        firstPaint: FP.startTime,
-        firstContentfulPaint: FCP.startTime,
-        firstMeaningfulPaint: FMP.startTime,
-        largestContentfulPaint: LCP.startTime,
+        firstPaint: FP ? FP.startTime : '',
+        firstContentfulPaint: FCP ? FCP.startTime : '',
+        firstMeaningfulPaint: FMP ? FMP.startTime : '',
+        largestContentfulPaint: LCP ? LCP.startTime : '',
       });
       /* 性能指标监控结束 */
     }, 3000);

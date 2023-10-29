@@ -6,7 +6,24 @@
     <title>前端监控</title>
   </head>
   <body>
-    <div class="container">
+    <!-- 4. 监控性能指标 -->
+    <!-- <div class="container">
+      <div id="contentbox" style="width: 600px; height: 600px; word-wrap: break-word; background-color: grey;">
+        <button id="FIBtn">点我</button>
+      </div>
+    </div>
+    <script>
+      setTimeout(() => {
+        let content = document.getElementById("contentbox");
+        let h1 = document.createElement("h1");
+        h1.innerHTML = "我是这个页面最有意义的内容";
+        h1.setAttribute("elementtiming", "meaningful");
+        content.appendChild(h1);
+      }, 2000);
+    </script> -->
+
+    <!-- 3. 监控用户体验指标 -->
+    <!-- <div class="container">
       <div id="contentbox" class="div1 div01" style="height: 200px; width: 100%;"></div>
     </div>
     <script> // domContentLoadedEventTime指标测试
@@ -15,7 +32,9 @@
         const start = Date.now();
         while((Date.now() - start) < 1000) {}
       })
-    </script>
+    </script> -->
+
+    <!-- 2. 白屏监控示例 -->
     <!-- <div class="container">
       <div id="contentbox" class="div1 div01"></div>
     </div>
@@ -28,7 +47,8 @@
         contentbox.appendChild(newContent);
       }, 3000);
     </script> -->
-    <!-- 监控JS错误、promise错误示例 -->
+
+    <!-- 1. 监控JS错误、promise错误示例 -->
     <!-- <div>
       <div class="content">
         <input

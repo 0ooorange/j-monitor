@@ -45,7 +45,6 @@ export function blankScreen(times = 0) { // 轮询次数
       // isWrapper(LToptoRBottomElements[0]);
       // isWrapper(LBottomtoRTopElements[0]);
     }
-    console.log(wrapperPoints);
     if (wrapperPoints >= 18) {
       let centerElements = document.elementFromPoint(
         window.innerWidth / 2,

@@ -6,6 +6,20 @@
     <title>前端监控</title>
   </head>
   <body>
+    <!-- 5. longTask示例 -->
+    <div id="container">
+      <div class="content" style="width: 600px; height: 600px; word-wrap: break-word">
+        <button id="longTaskBtn">执行longTask</button>
+      </div>
+    </div>
+    <script>
+      let longTaskBtn = document.getElementById("longTaskBtn");
+      longTaskBtn.addEventListener("click", () => {
+        let start = Date.now();
+        while(Date.now() - start < 200) {}
+        while(Date.now() - start < 200) {}
+      })
+    </script>
     <!-- 4. 监控性能指标 -->
     <!-- <div class="container">
       <div id="contentbox" style="width: 600px; height: 600px; word-wrap: break-word; background-color: grey;">

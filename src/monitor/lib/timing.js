@@ -22,7 +22,6 @@ export function timing() {
     new PerformanceObserver((entryList, observer) => {
       let lastEvent = getLastEvent();
       let firstInput = entryList.getEntries()[0];
-      console.log(lastEvent);
       if (firstInput) {
         // processingStart开始处理的时间，startTime开始点击的时间，差值就是处理的延迟
         let inputDelay = firstInput.processingStart - firstInput.startTime;
